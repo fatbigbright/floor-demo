@@ -17,17 +17,41 @@
 			.tooltip > p {
 				text-align: left;
 			}
-			.tooltip-inner {
+
+			/*cannot be used like text#tr421+.tooltip because the tooltip has been relocated as child element of body*/
+			.tooltip.bottom > .tooltip-arrow {border-bottom-color: grey;}
+			.tooltip > .tooltip-inner {
+				background-color: grey;
+				color: #ffbb00;
 				text-align: left;
 			}
+
+			svg text {
+				fill: black;
+			}
+
+			#r121{ fill:#ffbb00; }
+			#r122{ fill:#ff0000; }
+			#r123{ fill:#ffbb00; }
+			#r12c1{ fill:#00aa55; }
+			#r12c2{ fill:#ffbb00; }
+			#r12c3{ fill:#00aa55; }
+			#r12c4{ fill:#00aa55; }
+			#r12c5{ fill:#ffbb00; }
+			#r12c6{ fill:#00aa55; }
+			#r124{ fill:#ffbb00; }
+			#r125{ fill:#00aa66; }
+
 
 			path#r421{ fill:#ffbb00; }
 			path#r422{ fill:#ff0000; }
 			path#r423{ fill:#ffbb00; }
 			path#r42c1{ fill:#00aa55; }
 			path#r42c2{ fill:#ffbb00; }
-			path#r424{ fill:#00ff55; }
+			path#r42c3{ fill:#00aa55; }
+			path#r424{ fill:#ffbb00; }
 			path#r425{ fill:#00aa66; }
+			path#r426{ fill:#ffbb00; }
 		</style>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -39,6 +63,11 @@
     			$('[data-toggle="tooltip"]').tooltip({
 					'container': 'body',
 					'placement': 'bottom'
+				}).on('inserted.bs.tooltip', function(e){
+					if(!e || !e.target) return;
+
+					var paintColor = $(e.target).attr('fill').toString();
+					//$(this).data('bs.tooltip').$tip.find('p').css('color', paintColor);
 				}); 
 				//prevent parent element to scroll when mouse is hover above the svg
 				
@@ -281,49 +310,74 @@
 					</div>
 					<div class="levels">
 						<div class="level level--1" aria-label="Level 1">
-							<svg class="map map--1" viewBox="0 0 1200 800" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+							<svg class="map map--1" viewBox="0 0 560 315" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
 								<title>Map Level 1</title>
-								<polygon points="1035.94 787.41 1035.94 423.16 855.37 423.16 855.37 350.52 1187.28 350.52 1187.28 12.59 548.09 12.59 548.09 68.87 437.36 68.87 437.36 12.59 49.37 12.59 49.37 366.5 12.72 366.5 12.72 787.41 356.2 787.41 414.93 584.41 554.4 584.41 627.81 787.41 1035.94 787.41" class="map__ground" />
-								<path d="M1187.28,12.59V350.52H855.37v72.64h180.58V787.41H627.81l-73.41-203H414.93l-58.73,203H12.72V366.5H49.37V12.59h388V68.87H548.08V12.59h639.19M1200,0H535.36V56.28H450.09V0H36.65V353.91H0V800H365.8l2.64-9.13L424.52,597H545.44l70.39,194.65,3,8.35h429.82V410.57H868.09V363.11H1200V0h0Z" class="map__outline" />
-								<path d="M425.68,198.63c-6.85-14.83-46.38-30.35-58-11.24-41.24,67.9-83.63,118.16-65.12,124.22,7.55,2.48,56.77.11,94.11-54.39,21.35-31.13,31.71-52.74,29-58.59h0Z" class="map__lake" />
-								<ellipse cx="389.64" cy="214.94" rx="13.95" ry="13.8" class="map__tree" />
-								<ellipse cx="369.54" cy="191.71" rx="13.95" ry="13.8" class="map__tree" />
-								<ellipse cx="354.59" cy="220.27" rx="13.95" ry="13.8" class="map__tree" />
-								<path d="M724.87,696.45c14.61,7.58,42.34-6.42,52.85-26.15,24.57-46.13-43.25-126.94-61.66-120.57-7.5,2.6-6.47,29.34-4.4,82.81C713.74,686.25,719.12,693.46,724.87,696.45Z" class="map__lake" />
-								<ellipse cx="738.82" cy="595.48" rx="13.95" ry="13.8" class="map__tree" />
-								<ellipse cx="768.46" cy="605.4" rx="13.95" ry="13.8" class="map__tree" />
-								<ellipse cx="744.64" cy="624.92" rx="13.95" ry="13.8" class="map__tree" />
-								<polygon data-space="1.04" points="874.9,554.3 874.9,422.9 1036.1,422.9 1036.1,576.6 965.2,576.6 965.2,555" class="map__space" />
-								<rect x="854.08" y="639.79" width="88.09" height="147.62" class="map__space" />
-								<rect x="947.85" y="639.79" width="88.09" height="147.62" class="map__space" />
-								<polygon points="768.46 722.99 789.65 735.1 789.65 759.31 768.46 771.42 747.27 759.31 747.27 735.1 768.46 722.99" class="map__space" />
-								<rect x="666.88" y="565.62" width="26.26" height="25.99" class="map__space" />
-								<rect data-space="1.07" x="716.66" y="354.39" width="110.72" height="136.73" class="map__space" />
-								<rect x="602.1" y="354.39" width="110.72" height="136.73" class="map__space" />
-								<path data-space="1.05" d="M454.76,266.19h63a24.34,24.34,0,0,1,24.47,24.21h0V489.82A24.34,24.34,0,0,1,517.74,514h-63a24.34,24.34,0,0,1-24.47-24.21h0V290.4a24.34,24.34,0,0,1,24.47-24.21h0Z" class="map__space" />
-								<path d="M492.72,123.19c30.57,0,55.36-24.53,55.36-54.78H437.36C437.36,98.67,462.15,123.19,492.72,123.19Z" class="map__space" />
-								<rect data-space="1.09" x="600" y="12.59" width="93.14" height="168.14" class="map__space" />
-								<rect data-space="1.08" x="698.07" y="12" width="93.14" height="168.14" class="map__space" />
-								<rect x="796.13" y="12" width="93.14" height="107.12" class="map__space" />
-								<rect x="894.18" y="12" width="93.14" height="107.12" class="map__space" />
-								<rect data-space="1.03" x="991.9" y="12" width="195.4" height="339.1" class="map__space" />
-								<rect x="602" y="278.06" width="385.71" height="72.46" class="map__space" />
-								<rect x="48.89" y="209.37" width="169.92" height="94.85" class="map__space" />
-								<rect data-space="1.02" x="49.12" y="110.57" width="254.49" height="94.85" class="map__space" />
-								<rect data-space="1.06" x="49.09" y="12.16" width="334.73" height="94.85" class="map__space" />
-								<polygon points="898.12 182.42 919.31 194.53 919.31 218.74 898.12 230.85 876.93 218.74 876.93 194.53 898.12 182.42" class="map__space" />
-								<polygon points="49.18 309.14 218.94 309.14 218.94 358.1 277.46 358.1 277.46 474.63 11.72 474.63 11.72 365.63 49.18 365.63 49.18 309.14" class="map__space" />
-								<polygon data-space="1.01" points="12.72 685.56 153.78 685.56 153.78 747.64 215.44 747.64 215.44 712.85 263.89 712.85 263.89 787.41 12.72 787.41 12.72 685.56" class="map__space" />
-								<rect x="48.08" y="501.73" width="35.61" height="35.23" class="map__space" />
-								<rect x="94.01" y="501.73" width="35.61" height="35.23" class="map__space" />
-								<rect x="139.5" y="501.73" width="35.61" height="35.23" class="map__space" />
-								<rect x="48.3" y="547.25" width="35.61" height="35.23" class="map__space" />
-								<rect x="94.24" y="547.25" width="35.61" height="35.23" class="map__space" />
-								<rect x="139.72" y="547.25" width="35.61" height="35.23" class="map__space" />
-								<rect x="282.3" y="478.13" width="26.26" height="25.99" class="map__space" />
-								<polygon points="218.01 585.07 239.2 597.17 239.2 621.38 218.01 633.49 196.82 621.38 196.82 597.17 218.01 585.07" class="map__space" />
-								<polygon points="410.01 601.42 358.8 778.44 320.06 767.07 372.92 591.6 410.01 601.42" class="map__space" />
-								<polygon points="561.3,603.9 624,777 661.9,763.2 597.7,591.5" class="map__space" />
+
+
+<path fill="#D7D6DC" stroke="#A6A2A8" stroke-width="4" stroke-miterlimit="10" d="M58.489,30.775V89.07H5.247v134.29h53.24v65.379
+	c0,0,186.357,43.572,383.519,0v-67.461h53.24V88.03h-53.24V30.775C442.006,30.775,228.439-13.641,58.489,30.775z"/>
+<path id="r12c1" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M158.334,153.207c-1.801,0-28.818,0-28.818,0
+	s-14.049,25.614-32.78,0H68.999v-32.332h28.097c0,0,15.669,19.525,32.419,0h28.818V153.207z"/>
+<rect x="450.009" y="145.834" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="20" height="25.001"/>
+<rect x="450.009" y="120.834" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="20" height="25"/>
+<rect x="450.009" y="95.834" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="20" height="25"/>
+<rect x="446.676" y="178.5" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="40" height="20"/>
+<rect x="447.009" y="196.168" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="40" height="20"/>
+<rect x="470.009" y="95.835" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="16.667" height="74.999"/>
+<path fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M43.499,152.623c0,1.267-2.238,2.294-5,2.294
+	H27.167c-2.763,0-5-1.028-5-2.294v-46.577c0-1.267,2.237-2.294,5-2.294h11.332c2.762,0,5,1.027,5,2.294V152.623z"/>
+<path fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M43.499,205.289c0,1.266-2.238,2.295-5,2.295
+	H27.167c-2.763,0-5-1.029-5-2.295v-46.578c0-1.267,2.237-2.294,5-2.294h11.332c2.762,0,5,1.027,5,2.294V205.289z"/>
+<g>
+	<path fill="none" stroke="#BDBDBD" stroke-width="10" stroke-miterlimit="10" d="M60.489,39.921c0,0,143.695-37.901,379.999,0"/>
+	<ellipse fill="#D7D6DC" cx="128.849" cy="28.769" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="188.079" cy="23.939" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="249.51" cy="23.046" rx="3.468" ry="3.126"/>
+	<ellipse fill="#D7D6DC" cx="310.621" cy="25.725" rx="3.469" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="371.639" cy="31.083" rx="3.468" ry="3.125"/>
+	<path fill="none" stroke="#BDBDBD" stroke-width="10" stroke-miterlimit="10" d="M439.977,279.324c0,0-143.695,37.902-379.999,0"/>
+	<ellipse fill="#D7D6DC" cx="371.616" cy="290.477" rx="3.47" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="312.386" cy="295.307" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="250.956" cy="296.199" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="189.844" cy="293.521" rx="3.468" ry="3.126"/>
+	<ellipse fill="#D7D6DC" cx="128.827" cy="288.162" rx="3.468" ry="3.125"/>
+</g>
+<g>
+	
+		<rect id="r121" x="68.304" y="47.751" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="121.773" height="44.249"/>
+	
+		<rect id="r122" x="192.321" y="47.751" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="121.769" height="44.249"/>
+	
+		<rect id="r123" x="314.09" y="47.751" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="121.77" height="44.249"/>
+</g>
+<text transform="matrix(1 0 0 1 116.4988 72.751)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.1</text>
+<text transform="matrix(1 0 0 1 240.1755 72.751)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.2</text>
+<text transform="matrix(1 0 0 1 360.1233 72.751)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.3</text>
+<path id="r12c4" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M158.807,187.742c-1.801,0-28.818,0-28.818,0
+	s-14.049,25.613-32.78,0H69.473V155.41H97.57c0,0,15.669,19.526,32.419,0h28.818V187.742z"/>
+<path id="r12c2" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M293.942,153.207c-1.801,0-28.818,0-28.818,0
+	s-14.049,25.613-32.78,0h-27.737v-32.333h28.097c0,0,15.669,19.525,32.42,0h28.818V153.207z"/>
+<path id="r12c5" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M294.414,187.742c-1.801,0-28.818,0-28.818,0
+	s-14.049,25.613-32.779,0H205.08V155.41h28.097c0,0,15.669,19.525,32.419,0h28.818V187.742z"/>
+<path id="r12c3" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M435.387,153.207c-1.801,0-28.818,0-28.818,0
+	s-14.049,25.613-32.78,0h-27.737v-32.333h28.098c0,0,15.67,19.525,32.42,0h28.818V153.207z"/>
+<path id="r12c6" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M435.86,187.742c-1.801,0-28.818,0-28.818,0
+	s-14.049,25.613-32.779,0h-27.736V155.41h28.097c0,0,15.669,19.525,32.419,0h28.818V187.742z"/>
+<rect x="172.927" y="115.985" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="16.667" height="74.999"/>
+<rect x="311.52" y="115.985" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="16.667" height="74.999"/>
+<rect id="r124" x="65.732" y="219.751" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="183.143" height="44.249"/>
+<rect id="r125" x="252.25" y="219.751" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="183.137" height="44.249"/>
+<text transform="matrix(1 0 0 1 145.9988 244.751)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.4</text>
+<text transform="matrix(1 0 0 1 332.1877 244.751)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.5</text>
+<text transform="matrix(1 0 0 1 94.4988 143.834)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.c.1</text>
+<text transform="matrix(1 0 0 1 94.4988 177.5)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.c.4</text>
+<text transform="matrix(1 0 0 1 228.4988 143.834)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.c.2</text>
+<text transform="matrix(1 0 0 1 228.4988 177.5)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.c.5</text>
+<text transform="matrix(1 0 0 1 372.1487 143.834)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.c.3</text>
+<text transform="matrix(1 0 0 1 372.1487 177.5)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">1.2.c.6</text>
+
+
+
 							</svg>
 							<div class="level__pins">
 								<a class="pin pin--1-1" data-category="1" data-space="1.01" href="#" aria-label="Pin for Apple Heart">
@@ -386,6 +440,7 @@
 						<div class="level level--2" aria-label="Level 2">
 							<svg class="map map--2" viewBox="0 0 560 315" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
 								<title>Map Level 2</title>
+								<!--
 <path id="r421" fill="#DCECCD" stroke="black" stroke-miterlimit="10" d="M73.654,55.25c2.5,0,40,0,40,0s19.5-30.5,45.5,0h38.5v38.5h-39
 	c0,0-21.75-23.25-45,0h-40V55.25z"/>
 <path id="r422" fill="#DCECCD" stroke="black" stroke-miterlimit="10" d="M197.965,55.25c2.5,0,40,0,40,0s19.5-30.5,45.5,0h38.5v38.5h-39
@@ -409,6 +464,87 @@
 <text transform="matrix(1 0 0 1 369.1223 71.751)" fill="#6D6D6D" font-family="'MicrosoftYaHei'" font-size="12">2.2.3</text>
 <text transform="matrix(1 0 0 1 187.844 252.2773)" fill="#6D6D6D" font-family="'MicrosoftYaHei'" font-size="12">2.2.4</text>
 <text transform="matrix(1 0 0 1 309.5002 252.2773)" fill="#6D6D6D" font-family="'MicrosoftYaHei'" font-size="12">2.2.5</text>
+-->
+
+
+
+
+
+
+
+<path fill="#D7D6DC" stroke="#A6A2A8" stroke-width="4" stroke-miterlimit="10" d="M58.489,30.775V89.07H5.247v134.289h53.241
+	v65.379c0,0,186.357,43.572,383.518,0v-67.461h53.241V88.03h-53.241V30.775C442.006,30.775,228.439-13.641,58.489,30.775z"/>
+<path id="r421" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M67.654,55.743c2.419,0,38.709,0,38.709,0
+	s18.871-29.296,44.032,0h37.258v36.979h-37.742c0,0-21.049-22.332-43.549,0H67.654V55.743z"  data-toggle="tooltip" title="<p id='tip421'>TT22.15&#8451;<br>HT80%</p>" data-html="true"/>
+<path id="r422" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M190.654,55.743c2.419,0,38.71,0,38.71,0
+	s18.871-29.296,44.033,0h37.258v36.979h-37.742c0,0-21.049-22.332-43.548,0h-38.71V55.743z"  data-toggle="tooltip" title="<p id='tip422'>TT25.15&#8451;<br>HT80%</p>" data-html="true"/>
+<path id="r423" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M312.965,55.742c2.419,0,38.71,0,38.71,0
+	s18.871-29.295,44.032,0h37.258v36.98h-37.742c0,0-21.048-22.332-43.548,0h-38.71V55.742z"/>
+<text transform="matrix(1 0 0 1 118.1541 69.751)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10" id="tr421">2.2.1</text>
+<text transform="matrix(1 0 0 1 242.176 69.751)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10" id="tr422">2.2.2</text>
+<text transform="matrix(1 0 0 1 362.1233 69.751)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">2.2.3</text>
+<path id="r426" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M433.31,257.563c-2.419,0-38.71,0-38.71,0
+	s-18.871,29.297-44.031,0H313.31v-36.979h37.741c0,0,21.049,22.332,43.549,0h38.71V257.563z"/>
+<path id="r425" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M310.31,257.563c-2.419,0-38.71,0-38.71,0
+	s-18.871,29.297-44.033,0h-37.258v-36.979h37.742c0,0,21.049,22.332,43.548,0h38.71V257.563z"/>
+<path id="r424" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M187.999,257.564c-2.419,0-38.71,0-38.71,0
+	s-18.871,29.296-44.032,0H67.999v-36.979h37.742c0,0,21.048,22.332,43.548,0h38.71V257.564z"/>
+<text transform="matrix(1 0 0 1 118.4988 247.6133)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">2.2.4</text>
+<text transform="matrix(1 0 0 1 242.5208 247.6133)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">2.2.5</text>
+<text transform="matrix(1 0 0 1 362.467 247.6133)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">2.2.6</text>
+<path id="r42c1" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M104.86,111.334v28.714h14.252
+	c0,0-2.339,12.223-14.895,12.325c-12.556,0.103,28.612-4.39,28.746,23.786h-31.127v25.175h110v-26.143h-33.16
+	c0,0,6.746-27.865,32.118-26.575c0,0-17.098-1.71-17.098-11.138h18.14v-26.145H104.86L104.86,111.334z" data-toggle="tooltip" title="<p id='tip42c1'>TT19.50&#8451;<br>HT80%</p>" data-html="true"/>
+<path id="r42c2" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M298.483,148.615c0,0-17.502,1.224-18.777-11.137
+	h20.052v-26.144h-89.435v26.143h-16.72c0,0,0.478,10.475,15.76,11.138c0,0-22.614-1.674-29.605,26.576h30.565v26.144h89.435V175.19
+	h-27.271c0,0,7.538-24.971,27.271-26.576"/>
+<text transform="matrix(1 0 0 1 138.7732 154.334)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10" id="tr42c1">2.2.c.1</text>
+<text transform="matrix(1 0 0 1 231.0857 154.334)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">2.2.c.2</text>
+<path id="r42c3" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M386.149,148.616c0,0-17.502,1.224-18.776-11.137
+	h20.051v-26.144H297.99v26.143h-16.722c0,0,0.478,10.475,15.761,11.138c0,0-22.613-1.674-29.605,26.576h30.566v26.143h89.434
+	v-26.143h-27.271c0,0,7.538-24.971,27.271-26.576"/>
+<text transform="matrix(1 0 0 1 314.3098 154.3354)" fill="#777777" font-family="'MicrosoftYaHei'" font-size="10">2.2.c.3</text>
+<rect x="16.509" y="145.834" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="20" height="25.001"/>
+<rect x="16.509" y="120.834" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="20" height="25"/>
+<rect x="16.509" y="95.834" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="20" height="25"/>
+<rect x="13.176" y="178.5" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="40" height="20"/>
+<rect x="13.509" y="196.168" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="40" height="20"/>
+<rect x="36.509" y="95.835" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="16.667" height="74.999"/>
+<path fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M474.509,106.959h-24.397v5.415h-10.624
+	c0,0,4.744,9.042,9.715,8.364c0,0-9.037,1.808-9.715,10.392h10.624v11.747h37.042v-35.918H474.509z"/>
+<path fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M474.509,142.791h-24.397v5.415h-10.624
+	c0,0,4.744,9.041,9.715,8.363c0,0-9.037,1.809-9.715,10.393h10.624v11.747h37.042v-35.918H474.509z"/>
+<rect x="446.821" y="192.666" fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" width="40" height="20"/>
+<path fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M88.987,207.084c0,2.76-2.239,5-5,5H72.654
+	c-2.761,0-5-2.24-5-5v-101.5c0-2.761,2.239-5,5-5h11.333c2.761,0,5,2.239,5,5V207.084z"/>
+<path fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M432.965,152.623c0,1.267-2.238,2.294-5,2.294
+	h-11.332c-2.762,0-5-1.028-5-2.294v-46.577c0-1.267,2.238-2.294,5-2.294h11.332c2.762,0,5,1.027,5,2.294V152.623z"/>
+<path fill="#BDBDBD" stroke="#D7D6DC" stroke-width="3" stroke-miterlimit="10" d="M432.965,205.289c0,1.266-2.238,2.295-5,2.295
+	h-11.332c-2.762,0-5-1.029-5-2.295v-46.578c0-1.267,2.238-2.294,5-2.294h11.332c2.762,0,5,1.027,5,2.294V205.289z"/>
+<g>
+	<path fill="none" stroke="#BDBDBD" stroke-width="10" stroke-miterlimit="10" d="M60.489,39.921c0,0,143.695-37.901,379.999,0"/>
+	<ellipse fill="#D7D6DC" cx="128.849" cy="28.769" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="188.079" cy="23.939" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="249.51" cy="23.046" rx="3.468" ry="3.126"/>
+	<ellipse fill="#D7D6DC" cx="310.622" cy="25.725" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="371.639" cy="31.083" rx="3.468" ry="3.125"/>
+	<path fill="none" stroke="#BDBDBD" stroke-width="10" stroke-miterlimit="10" d="M439.977,279.324c0,0-143.695,37.902-379.999,0"/>
+	<ellipse fill="#D7D6DC" cx="371.617" cy="290.477" rx="3.469" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="312.386" cy="295.307" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="250.956" cy="296.199" rx="3.468" ry="3.125"/>
+	<ellipse fill="#D7D6DC" cx="189.844" cy="293.521" rx="3.468" ry="3.126"/>
+	<ellipse fill="#D7D6DC" cx="128.827" cy="288.162" rx="3.468" ry="3.125"/>
+</g>
+
+
+
+
+
+
+
+
+
+
 
 							</svg>
 							<div class="level__pins">

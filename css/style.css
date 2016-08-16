@@ -100,7 +100,7 @@ button:focus {
 	top: 0;
 	left: 0;
 	overflow: hidden;
-	width: calc(100vw - 300px);
+	width: calc(100vw - 0px);
 	height: 100vh;
 }
 
