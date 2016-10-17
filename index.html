@@ -61,8 +61,9 @@
 
 				
     			$('[data-toggle="tooltip"]').tooltip({
-					'container': 'body',
-					'placement': 'bottom'
+					'container': 'div.mall',
+					'placement': 'bottom',
+					'viewport': '#viewport'
 				}).on('inserted.bs.tooltip', function(e){
 					if(!e || !e.target) return;
 
@@ -71,22 +72,23 @@
 				}); 
 				//prevent parent element to scroll when mouse is hover above the svg
 				
-				$('svg')[0].onmouseover = function(){
+				$('svg').bind('mouseover', function(){
 				document.body.style.overflow='hidden';
-				};
-				$('svg')[0].onmouseout = function(){
+				});
+				$('svg').bind('mouseout', function(){
 				document.body.style.overflow = 'relative';
-				};
+				});
 				
 				//
 
-				$('svg')[0].addEventListener('mousewheel', function(e){
-				var deltaY = e.deltaY || e.wheelDelta || 0;
-				var viewBoxValues = $('svg').attr('viewBox').split(/\s+|,/);
-				$('svg').attr('viewBox', viewBoxValues[0] + ' ' 
-										+ viewBoxValues[1] + ' ' 
-										+ (parseInt(viewBoxValues[2]) + 0.16*deltaY).toString() + ' ' 
-										+ (parseInt(viewBoxValues[3]) + 0.09*deltaY).toString());
+				//$('svg')[0].addEventListener('mousewheel', function(e){
+				$('div.level')[0].addEventListener('mousewheel', function(e, delta){
+					var deltaY = e.deltaY || e.wheelDelta || delta || 0;
+					var viewBoxValues = $(this).find('svg').attr('viewBox').split(/\s+|,/);
+					$('svg').attr('viewBox', viewBoxValues[0] + ' ' 
+											+ viewBoxValues[1] + ' ' 
+											+ (parseInt(viewBoxValues[2]) + 0.16*deltaY).toString() + ' ' 
+											+ (parseInt(viewBoxValues[3]) + 0.09*deltaY).toString());
 				}, false);
 				
 				/*

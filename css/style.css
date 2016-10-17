@@ -127,8 +127,8 @@ button:focus {
 .surroundings,
 .levels {
 	position: absolute;
-	top: 50%;
-	left: 50%;
+	top: 30%;
+	left: 40%;
 }
 
 .surroundings {
@@ -154,8 +154,8 @@ button:focus {
 }
 
 .levels {
-	width: 96vmin;
-	height: 64vmin;
+	width: 160vmin;
+	height: 90vmin;
 	margin: -32vmin 0 0 -48vmin;
 	-webkit-transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
@@ -307,9 +307,9 @@ button:focus {
 /* Current level */
 
 .level.level--current {
-	-webkit-transform: translateZ(15vmin) rotate3d(0,0,1,20deg);
+	-webkit-transform: translateZ(15vmin) rotate3d(-1,-1,1,45deg);
 	/* go to center */
-	transform: translateZ(15vmin) rotate3d(0,0,1,20deg);
+	transform: translateZ(15vmin) rotate3d(-1,-1,1,45deg);
 }
 
 /* Navigation classes */
